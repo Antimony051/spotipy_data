@@ -4,50 +4,29 @@ import os
 import re
 path_input=input("enter the path to extracted Mydata file: ")
     
-def get_all_artists():
-    artists_dict={}
-    for x in json_data():
-        artist=x["master_metadata_album_artist_name"]
-        if artist in artist_dict:
-            artist_dict[artist]+=1
-        else:
-            artist_dict[artist]=1
-    return artist_dict
+class get_all():
+    dict={}
+    def __init__(self,feild_name):
+        self.field=feild_name
+        for x in json_data:
+            element=x[self.field]
+            if element in self.dict:
+                self.dict[element]+=1
+            else:
+                self.dict[element]=1
+    def top_10(self):
+        self.sorted_list=sorted(a.items(), key=lambda x:x[1],reverse=True)
+        return self.sorted_list[:10]
 
-def get_all_songs():
-    songs_dict={}
-    for x in json_data():
-        song=x["master_metadata_track_name"]
-        if song in songs_dict:
-            songs_dict[artist]+=1
-        else:
-            songs_dict[artist]=1
-    return songs_dict
-
-    print(sorted(songs_dict.values()))          # to print songs by the number of times they appear 
-    print(len(songs_dict))                      # number of unique songs
-
-    print(sorted(artist_dict.values()))          # to print artists by the number of times they appear 
-    print(len(artist_dict))                      # number of artists
+artists= get_all("master_metadata_album_artist_name")
+songs= get_all("master_metadata_track_name")
+albums= get_all("master_metadata_track_name")
 
 def plotter(inparr):
     axis_x=[a for a in range(len(inparr))]
     axis_y=inparr
     plt.plot(axis_x, axis_y)
     plt.show()
-
-def get_all_album():
-    album_dict={}
-    for x in json_data():
-        album=x["master_metadata_track_name"]
-        if alubm in album_dict:
-            album_dict[artist]+=1
-        else:
-            album_dict[artist]=1
-    return album_dict
-
-    print(sorted(album_dict.values()))          # to print album by the number of times they appear 
-    print(len(album_dict))                      # number of unique album
 
 def find_total_time():
     total=0
