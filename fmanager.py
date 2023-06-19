@@ -31,7 +31,7 @@ def mange_files(path_input=None,out_file_name="processed.json"):
             for x in json_data:
                 out_file.write("{")
                 for key in arr[:-1]:  
-                    value=json.dumps(x[key])        # using json.dumps is necessay becuase it escapes " and \ present in the string x[key]
+                    value=json.dumps(x[key])                                  # using json.dumps is necessay becuase it escapes " and \ present in the string x[key]
                     out_file.write(f'"{key}":{value},')
                 out_file.write(f'"{arr[-1]}":{json.dumps(x[arr[-1]])}')       # the last one is handled out of loop because we don't want a comma after it
                 out_file.write("},\n")
@@ -45,7 +45,7 @@ def mange_files(path_input=None,out_file_name="processed.json"):
 
     list_of_files=os.listdir(path_)                 # get a list of all files in the given directory
     
-    setup_out_file(path_,'[',"w")                     # initilise the file with '['
+    setup_out_file(path_,'[',"w")                   # initilise the file with '['
 
     for file_name in list_of_files:
         is_useful_file=bool(re.search('20\d\d_\d+\.json',file_name)) # check if the file name is in format [some date beginning form 2000]_[any number from 0 to inf].json
