@@ -1,17 +1,18 @@
+import matplotlib.pyplot as plt
 def plotter(inparr):
     axis_x=[a for a in range(len(inparr))]
     axis_y=inparr
     plt.plot(axis_x, axis_y)
     plt.show()
 
-def find_total_time():
+def find_total_time(json_data):
     total=0
     for x in json_data():
         time=x["ms_played"]
         total+=time
     return (total//60000)        # return the value in minutes
 
-def no_of_songs_by_time(time_zone=0,resolution=5):
+def no_of_songs_by_time(json_data,time_zone=0,resolution=5):
     time_diff=time_zone//resolution
     no_slots=1440//resolution                       #number_of_slots
     timarr=[0]*(no_slots)                           # an array containing required number of zeros, each represents a block corresponding to the resolution, default res is 5 mins
@@ -23,7 +24,7 @@ def no_of_songs_by_time(time_zone=0,resolution=5):
                                                     #to do, rotate the list at the end instead of doing math
     plotter(timarr)
 
-def song_by_month():
+def song_by_month(json_data):
     montharr=[0]*12
     for x in range(len(json_data)):
         month=int(json_data[x]["endTime"][5:7])
