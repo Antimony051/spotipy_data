@@ -1,7 +1,4 @@
 import json
-import matplotlib.pyplot as plt
-import os
-import re
 import fmanager
 import utils
 
@@ -17,6 +14,8 @@ json_data=json_handler(out_file_path)
 
 artists= utils.get_all("master_metadata_album_artist_name",json_data)
 songs= utils.get_all("master_metadata_track_name",json_data)
-albums= utils.get_all("master_metadata_track_name",json_data)
+albums= utils.get_all("master_metadata_album_album_name",json_data)
 
-print(artists.top_10())
+print(songs.top_10())
+print(len(songs.dict))
+utils.no_of_songs_by_time(json_data)
