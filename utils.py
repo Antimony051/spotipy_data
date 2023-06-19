@@ -30,16 +30,12 @@ def song_by_month():
         montharr[month-1]+=1
     plotter(montharr)
 
-def json_handler(f_name):
-    current_file= open(f_name)
-    json_data=json.load(current_file)
-    current_file.close()
-
 # to do songs by date: your first song etc
 
 class get_all():
-    dict={}
-    def __init__(self,feild_name):
+
+    def __init__(self,feild_name,json_data):
+        self.dict={}
         self.field=feild_name
         for x in json_data:
             element=x[self.field]
@@ -48,5 +44,5 @@ class get_all():
             else:
                 self.dict[element]=1
     def top_10(self):
-        self.sorted_list=sorted(a.items(), key=lambda x:x[1],reverse=True)
+        self.sorted_list=sorted(self.dict.items(), key=lambda x:x[1],reverse=True)
         return self.sorted_list[:10]
