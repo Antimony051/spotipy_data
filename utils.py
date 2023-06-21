@@ -1,6 +1,8 @@
 import matplotlib.pyplot as plt
+import numpy
 def plotter(inparr):
-    axis_x=[a for a in range(len(inparr))]
+    # axis_x=[a for a in range(len(inparr))]
+    axis_x=numpy.linspace(0,23.9,len(inparr))
     axis_y=inparr
     plt.plot(axis_x, axis_y)
     plt.show()
@@ -12,15 +14,15 @@ def find_total_time(json_data):
         total+=time
     return (total//60000)        # return the value in minutes
 
-def no_of_songs_by_time(json_data,time_zone=0,resolution=5):
-    time_diff=time_zone//resolution
-    no_slots=1440//resolution                       #number_of_slots
-    timarr=[0]*(no_slots)                           # an array containing required number of zeros, each represents a block corresponding to the resolution, default res is 5 mins
+def no_of_songs_by_time(json_data,time_zone=0,smoothness=5):
+    time_diff=time_zone//smoothness                 # rounding to -inf might cause slight inaccuracies when time zone is negative 
+    no_slots=1440//smoothness                       #number_of_slots
+    timarr=[0]*(no_slots)                           # an array containing required number of zeros, each represents a block corresponding to the smoothness, default res is 5 mins
     for x in json_data:
         minutes_=int(x["ts"][-6:-4])                # extract the minute
         hours_=int(x["ts"][-9:-7])                  # extract the hour
-        minute=(hours_*60+minutes_)//resolution     # converting them into minutes and packing them into chunks of 5 min
-        timarr[(minute+time_diff)%no_slots]+=1      # correct the time zone and increment teh corresponding time slot 
+        minute=(hours_*60+minutes_)//smoothness     # converting them into minutes and packing them into chunks of 5 min
+        timarr[(minute+time_diff)%no_slots]+=1      # correct the time zone and increment the corresponding time slot 
                                                     #to do, rotate the list at the end instead of doing math
     plotter(timarr)
 
