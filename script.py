@@ -18,5 +18,5 @@ albums= utils.get_all("master_metadata_album_album_name",json_data)
 
 utils.bar_chart_drawer(songs.top_10())
 print(len(songs.dict))
-utils.no_of_songs_by_time(json_data,time_zone=345,smoothness=10)
+utils.no_of_songs_by_time(json_data,time_zone=-270,smoothness=10)
 utils.song_by_month(json_data)
