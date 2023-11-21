@@ -64,7 +64,3 @@ Clone the repository and ensure you have the required dependencies installed:
 This project uses:
 - `matplotlib` for plotting
 - `numpy` for array operations
-
-## License
-
-This project is licensed under [MIT License](LICENSE).
