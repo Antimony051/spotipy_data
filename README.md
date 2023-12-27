@@ -1,7 +1,5 @@
 # Spotipy Data Analysis
 
-This Python project processes your Spotify listening data to extract various statistics and insights about your listening habits.
-
 ## Description
 
 The project comprises several modules and functionalities to extract, analyze, and visualize data from Spotify listening history.
